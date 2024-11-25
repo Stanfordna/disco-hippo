@@ -6,8 +6,10 @@ import socket
 import ssl
 import subprocess
 
-def get_local_ip():
+def get_local_ip() -> str:
     # TODO: move into separate module
+    return subprocess.run(["curl", "ifconfig.me"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL).stdout.decode()
+    # old code below, probably dumbw ay to do it
     # Define the piped commands
     cmd1 = ["ipconfig"]
     cmd2 = ["grep", "IPv4"]
